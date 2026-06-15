@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kagi Search API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Run a Kagi search query via GET",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://kagi.com/api/v1/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query string."
+              }
+            ]
+          },
+          "docs": "Perform a web search using the Kagi index by passing the query as a URL parameter."
+        },
+        {
+          "info": {
+            "name": "Run a Kagi search query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://kagi.com/api/v1/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Perform a web search using the Kagi index. Supports access to premium results, Lenses, and markdown extraction features."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Extract",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Extract markdown from URLs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://kagi.com/api/v1/extract",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Extract clean markdown content from up to 10 URLs per request using the Kagi extraction service."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
