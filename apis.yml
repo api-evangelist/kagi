@@ -48,11 +48,11 @@ apis:
         url: https://help.kagi.com/kagi/api/search.html
       - type: GettingStarted
         url: https://help.kagi.com/kagi/api/intro.html
-      - type: SignUp
+      - type: Signup
         url: https://kagi.com/signup
       - type: APIReference
         url: https://help.kagi.com/kagi/api/search.html
-      - type: SDK
+      - type: SDKs
         url: https://github.com/kagisearch
       - type: Pricing
         url: https://help.kagi.com/kagi/api/overview.html
