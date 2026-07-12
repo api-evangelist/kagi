@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/kagi-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Kagi API token issued from https://kagi.com/api/keys, sent in the Authorization
+    header as "Bearer <token>" (or the equivalent "Bot <token>" form documented for the legacy
+    Search endpoint).
+  sources:
+  - openapi/kagi-openapi.yml
