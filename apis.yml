@@ -211,6 +211,8 @@ apis:
       - type: API Key
         description: Bot API token sent via the Authorization header.
 common:
+  - type: AgenticAccess
+    url: agentic-access/kagi-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/kagi-vulnerability-disclosure.yml
   - type: DomainSecurity
