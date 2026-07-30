@@ -11,9 +11,22 @@ description: >-
   pay-per-use with monthly invoicing and a Discord community for developer
   support.
 type: Index
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Provider
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/kagi.png
 tags:
   - Search
   - Premium Search
@@ -31,185 +44,203 @@ created: '2026-05-23'
 modified: '2026-05-23'
 specificationVersion: '0.20'
 apis:
-  - aid: kagi:search-api
-    name: Kagi Search API
-    description: >-
-      The Kagi Search API delivers premium, ad-free web search results powered
-      by the Kagi index, designed for AI agents, research workflows, and
-      applications that demand high-quality results.
-    humanURL: https://help.kagi.com/kagi/api/search.html
-    baseURL: https://kagi.com/api/v0
-    tags:
-      - Search
-      - Web
-      - REST
-    properties:
-      - type: Documentation
-        url: https://help.kagi.com/kagi/api/search.html
-      - type: GettingStarted
-        url: https://help.kagi.com/kagi/api/intro.html
-      - type: Signup
-        url: https://kagi.com/signup
-      - type: APIReference
-        url: https://help.kagi.com/kagi/api/search.html
-      - type: SDKs
-        url: https://github.com/kagisearch
-      - type: Pricing
-        url: https://help.kagi.com/kagi/api/overview.html
-      - type: Authentication
-        url: https://help.kagi.com/kagi/api/intro.html
-    features:
-      - name: Premium Search Results
-        description: Ad-free, privacy-focused web search results sourced from the Kagi index.
-      - name: Structured Responses
-        description: JSON responses with title, URL, snippet, and metadata for easy consumption.
-      - name: API Playground
-        description: Test requests directly in the browser from the API portal.
-      - name: Pay-Per-Use Billing
-        description: Pay only for requests made, invoiced monthly or at a $100 threshold.
-    useCases:
-      - name: Agent Web Search Tool
-        description: Use as a high-quality web search tool inside AI agents.
-      - name: Research Workflows
-        description: Power research pipelines that need premium, low-noise results.
-      - name: Internal Knowledge Apps
-        description: Embed premium search inside internal portals and assistants.
-    integrations:
-      - name: Python
-      - name: Go
-      - name: Rust
-      - name: TypeScript
-      - name: Model Context Protocol
-    authentication:
-      - type: API Key
-        description: Bot API token sent via the Authorization header.
-  - aid: kagi:enrichment-api
-    name: Kagi Enrichment API
-    description: >-
-      The Kagi Enrichment API provides access to Kagi's Teclis non-commercial
-      web index and TinyGem news index for specialized retrieval and discovery
-      workloads.
-    humanURL: https://help.kagi.com/kagi/api/enrich.html
-    baseURL: https://kagi.com/api/v0
-    tags:
-      - Enrichment
-      - Teclis
-      - TinyGem
-      - News
-      - Web Index
-    properties:
-      - type: Documentation
-        url: https://help.kagi.com/kagi/api/enrich.html
-      - type: APIReference
-        url: https://help.kagi.com/kagi/api/enrich.html
-      - type: Pricing
-        url: https://help.kagi.com/kagi/api/overview.html
-    features:
-      - name: Teclis Index Access
-        description: Query Kagi's curated non-commercial Teclis web index.
-      - name: TinyGem News Index
-        description: Access the TinyGem news index for fresh news content.
-      - name: JSON Responses
-        description: Lightweight JSON responses suited for agent and pipeline use.
-    useCases:
-      - name: Small-Web Discovery
-        description: Surface high-quality, non-commercial sources for research and content discovery.
-      - name: News Monitoring
-        description: Track fresh news content for alerts and briefings.
-      - name: Niche RAG Backends
-        description: Use specialized indexes to ground RAG pipelines in curated sources.
-    integrations:
-      - name: Python
-      - name: TypeScript
-      - name: Go
-      - name: Rust
-    authentication:
-      - type: API Key
-        description: Bot API token sent via the Authorization header.
-  - aid: kagi:summarizer-api
-    name: Kagi Universal Summarizer API
-    description: >-
-      The Universal Summarizer API condenses URLs, documents, audio, and video
-      into structured summaries using Kagi's hosted models.
-    humanURL: https://help.kagi.com/kagi/api/summarizer.html
-    baseURL: https://kagi.com/api/v0
-    tags:
-      - Summarization
-      - Documents
-      - Audio
-      - Video
-      - LLMs
-    properties:
-      - type: Documentation
-        url: https://help.kagi.com/kagi/api/summarizer.html
-      - type: APIReference
-        url: https://help.kagi.com/kagi/api/summarizer.html
-      - type: Pricing
-        url: https://help.kagi.com/kagi/api/overview.html
-    features:
-      - name: URL Summarization
-        description: Summarize the content of a public URL into structured text.
-      - name: Multi-Format Input
-        description: Handle web pages, documents, audio, and video sources.
-      - name: Selectable Engines
-        description: Choose summary engines tuned for different output styles.
-    useCases:
-      - name: Article TLDRs
-        description: Generate TLDRs of news articles and blog posts.
-      - name: Meeting Recaps
-        description: Summarize recorded meetings and long-form audio.
-      - name: Document Triage
-        description: Quickly surface key points from long documents.
-    integrations:
-      - name: Python
-      - name: TypeScript
-      - name: Go
-      - name: Rust
-    authentication:
-      - type: API Key
-        description: Bot API token sent via the Authorization header.
-  - aid: kagi:fastgpt-api
-    name: Kagi FastGPT API
-    description: >-
-      FastGPT is Kagi's LLM-powered question answering API that combines a
-      hosted model with live Kagi web search for grounded, cited answers.
-    humanURL: https://help.kagi.com/kagi/api/fastgpt.html
-    baseURL: https://kagi.com/api/v0
-    tags:
-      - FastGPT
-      - QA
-      - Grounded Answers
-      - LLMs
-      - Search
-    properties:
-      - type: Documentation
-        url: https://help.kagi.com/kagi/api/fastgpt.html
-      - type: APIReference
-        url: https://help.kagi.com/kagi/api/fastgpt.html
-      - type: Pricing
-        url: https://help.kagi.com/kagi/api/overview.html
-    features:
-      - name: Grounded Answers
-        description: LLM answers grounded in live Kagi search results with citations.
-      - name: Low Latency
-        description: Optimized for fast question answering in interactive agents.
-      - name: Citation Sources
-        description: Return source URLs and snippets alongside each answer.
-    useCases:
-      - name: Q&A Agents
-        description: Build chat agents that answer factual questions with citations.
-      - name: Knowledge Assistants
-        description: Power knowledge assistants that need grounded responses.
-      - name: Search-Backed Chat
-        description: Replace bare LLMs with search-grounded chat experiences.
-    integrations:
-      - name: Python
-      - name: TypeScript
-      - name: Go
-      - name: Rust
-    authentication:
-      - type: API Key
-        description: Bot API token sent via the Authorization header.
+- aid: kagi:search-api
+  name: Kagi Search API
+  description: >-
+    The Kagi Search API delivers premium, ad-free web search results powered by the Kagi index, designed
+    for AI agents, research workflows, and applications that demand high-quality results.
+  humanURL: https://help.kagi.com/kagi/api/search.html
+  baseURL: https://kagi.com/api/v0
+  tags:
+  - Search
+  - Web
+  - REST
+  properties:
+  - type: Documentation
+    url: https://help.kagi.com/kagi/api/search.html
+  - type: GettingStarted
+    url: https://help.kagi.com/kagi/api/intro.html
+  - type: Signup
+    url: https://kagi.com/signup
+  - type: APIReference
+    url: https://help.kagi.com/kagi/api/search.html
+  - type: SDKs
+    url: https://github.com/kagisearch
+  - type: Pricing
+    url: https://help.kagi.com/kagi/api/overview.html
+  - type: Authentication
+    url: https://help.kagi.com/kagi/api/intro.html
+  features:
+  - name: Premium Search Results
+    description: Ad-free, privacy-focused web search results sourced from the Kagi index.
+  - name: Structured Responses
+    description: JSON responses with title, URL, snippet, and metadata for easy consumption.
+  - name: API Playground
+    description: Test requests directly in the browser from the API portal.
+  - name: Pay-Per-Use Billing
+    description: Pay only for requests made, invoiced monthly or at a $100 threshold.
+  useCases:
+  - name: Agent Web Search Tool
+    description: Use as a high-quality web search tool inside AI agents.
+  - name: Research Workflows
+    description: Power research pipelines that need premium, low-noise results.
+  - name: Internal Knowledge Apps
+    description: Embed premium search inside internal portals and assistants.
+  integrations:
+  - name: Python
+  - name: Go
+  - name: Rust
+  - name: TypeScript
+  - name: Model Context Protocol
+  authentication:
+  - type: API Key
+    description: Bot API token sent via the Authorization header.
+- aid: kagi:enrichment-api
+  name: Kagi Enrichment API
+  description: >-
+    The Kagi Enrichment API provides access to Kagi's Teclis non-commercial web index and TinyGem news
+    index for specialized retrieval and discovery workloads.
+  humanURL: https://help.kagi.com/kagi/api/enrich.html
+  baseURL: https://kagi.com/api/v0
+  tags:
+  - Enrichment
+  - Teclis
+  - TinyGem
+  - News
+  - Web Index
+  properties:
+  - type: Documentation
+    url: https://help.kagi.com/kagi/api/enrich.html
+  - type: APIReference
+    url: https://help.kagi.com/kagi/api/enrich.html
+  - type: Pricing
+    url: https://help.kagi.com/kagi/api/overview.html
+  features:
+  - name: Teclis Index Access
+    description: Query Kagi's curated non-commercial Teclis web index.
+  - name: TinyGem News Index
+    description: Access the TinyGem news index for fresh news content.
+  - name: JSON Responses
+    description: Lightweight JSON responses suited for agent and pipeline use.
+  useCases:
+  - name: Small-Web Discovery
+    description: Surface high-quality, non-commercial sources for research and content discovery.
+  - name: News Monitoring
+    description: Track fresh news content for alerts and briefings.
+  - name: Niche RAG Backends
+    description: Use specialized indexes to ground RAG pipelines in curated sources.
+  integrations:
+  - name: Python
+  - name: TypeScript
+  - name: Go
+  - name: Rust
+  authentication:
+  - type: API Key
+    description: Bot API token sent via the Authorization header.
+- aid: kagi:summarizer-api
+  name: Kagi Universal Summarizer API
+  description: >-
+    The Universal Summarizer API condenses URLs, documents, audio, and video into structured summaries
+    using Kagi's hosted models.
+  humanURL: https://help.kagi.com/kagi/api/summarizer.html
+  baseURL: https://kagi.com/api/v0
+  tags:
+  - Summarization
+  - Documents
+  - Audio
+  - Video
+  - LLMs
+  properties:
+  - type: Documentation
+    url: https://help.kagi.com/kagi/api/summarizer.html
+  - type: APIReference
+    url: https://help.kagi.com/kagi/api/summarizer.html
+  - type: Pricing
+    url: https://help.kagi.com/kagi/api/overview.html
+  features:
+  - name: URL Summarization
+    description: Summarize the content of a public URL into structured text.
+  - name: Multi-Format Input
+    description: Handle web pages, documents, audio, and video sources.
+  - name: Selectable Engines
+    description: Choose summary engines tuned for different output styles.
+  useCases:
+  - name: Article TLDRs
+    description: Generate TLDRs of news articles and blog posts.
+  - name: Meeting Recaps
+    description: Summarize recorded meetings and long-form audio.
+  - name: Document Triage
+    description: Quickly surface key points from long documents.
+  integrations:
+  - name: Python
+  - name: TypeScript
+  - name: Go
+  - name: Rust
+  authentication:
+  - type: API Key
+    description: Bot API token sent via the Authorization header.
+- aid: kagi:fastgpt-api
+  name: Kagi FastGPT API
+  description: >-
+    FastGPT is Kagi's LLM-powered question answering API that combines a hosted model with live Kagi web
+    search for grounded, cited answers.
+  humanURL: https://help.kagi.com/kagi/api/fastgpt.html
+  baseURL: https://kagi.com/api/v0
+  tags:
+  - FastGPT
+  - QA
+  - Grounded Answers
+  - LLMs
+  - Search
+  properties:
+  - type: Documentation
+    url: https://help.kagi.com/kagi/api/fastgpt.html
+  - type: APIReference
+    url: https://help.kagi.com/kagi/api/fastgpt.html
+  - type: Pricing
+    url: https://help.kagi.com/kagi/api/overview.html
+  features:
+  - name: Grounded Answers
+    description: LLM answers grounded in live Kagi search results with citations.
+  - name: Low Latency
+    description: Optimized for fast question answering in interactive agents.
+  - name: Citation Sources
+    description: Return source URLs and snippets alongside each answer.
+  useCases:
+  - name: Q&A Agents
+    description: Build chat agents that answer factual questions with citations.
+  - name: Knowledge Assistants
+    description: Power knowledge assistants that need grounded responses.
+  - name: Search-Backed Chat
+    description: Replace bare LLMs with search-grounded chat experiences.
+  integrations:
+  - name: Python
+  - name: TypeScript
+  - name: Go
+  - name: Rust
+  authentication:
+  - type: API Key
+    description: Bot API token sent via the Authorization header.
+- aid: kagi:kagi-extract-api
+  name: Kagi Extract API
+  description: Extract markdown content from web URLs.
+  humanURL: https://help.kagi.com/kagi/api/search.html
+  baseURL: https://kagi.com/api/v0
+  tags:
+  - Extract
+  properties:
+  - type: OpenAPI
+    url: openapi/kagi-extract-api-openapi.yml
+- aid: kagi:kagi-search-api
+  name: Kagi Search API
+  description: Perform Kagi web searches.
+  humanURL: https://help.kagi.com/kagi/api/search.html
+  baseURL: https://kagi.com/api/v0
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/kagi-search-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/kagi-agentic-access.yml
