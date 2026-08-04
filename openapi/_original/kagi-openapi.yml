@@ -1,0 +1,121 @@
+openapi: 3.1.0
+info:
+  title: Kagi Search API
+  description: >-
+    REST API for the Kagi premium search platform, exposing web search and
+    markdown extract endpoints. All requests are authenticated with a Kagi
+    API token issued from the Kagi API portal.
+  version: 1.0.0
+  termsOfService: https://kagi.com/terms
+  contact:
+    name: Kagi Support
+    url: https://help.kagi.com/kagi/api/overview.html
+  license:
+    name: Proprietary
+    url: https://kagi.com/terms
+
+servers:
+  - url: https://kagi.com/api/v1
+    description: Kagi API production endpoint
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: Search
+    description: Perform Kagi web searches.
+  - name: Extract
+    description: Extract markdown content from web URLs.
+
+paths:
+  /search:
+    post:
+      operationId: search
+      summary: Run a Kagi search query
+      description: >-
+        Perform a web search using the Kagi index. Supports access to premium
+        results, Lenses, and markdown extraction features.
+      tags:
+        - Search
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                q:
+                  type: string
+                  description: Search query string.
+              required:
+                - q
+      responses:
+        '200':
+          description: Search results.
+          content:
+            application/json:
+              schema:
+                type: object
+    get:
+      operationId: searchGet
+      summary: Run a Kagi search query via GET
+      description: >-
+        Perform a web search using the Kagi index by passing the query as a
+        URL parameter.
+      tags:
+        - Search
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: Search query string.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Search results.
+          content:
+            application/json:
+              schema:
+                type: object
+  /extract:
+    post:
+      operationId: extract
+      summary: Extract markdown from URLs
+      description: >-
+        Extract clean markdown content from up to 10 URLs per request using the
+        Kagi extraction service.
+      tags:
+        - Extract
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                urls:
+                  type: array
+                  description: One or more URLs to extract markdown from (up to 10 per call).
+                  items:
+                    type: string
+                    format: uri
+              required:
+                - urls
+      responses:
+        '200':
+          description: Extracted markdown payload.
+          content:
+            application/json:
+              schema:
+                type: object
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        Kagi API token issued from https://kagi.com/api/keys, sent in the
+        Authorization header as "Bearer <token>" (or the equivalent "Bot
+        <token>" form documented for the legacy Search endpoint).

@@ -1,0 +1,16 @@
+{
+  "provider": "kagi",
+  "sources": [
+    "kagi-extract-api-openapi.yml",
+    "kagi-search-api-openapi.yml"
+  ],
+  "outputs": [
+    "kagi-extract-api-openapi.yml",
+    "kagi-search-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
