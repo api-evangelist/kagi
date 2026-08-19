@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kagi Search Extract API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Extract",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Extract markdown from URLs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://kagi.com/api/v1/extract",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Extract clean markdown content from up to 10 URLs per request using the Kagi extraction service."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
