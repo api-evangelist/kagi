@@ -50,6 +50,18 @@ tags:
   - OpenAPI
   - Pay-Per-Use
   - Privacy
+  - LLM
+  - Web Index
+tags_raw:
+  - Search
+  - Premium Search
+  - AI Search
+  - Summarization
+  - FastGPT
+  - Enrichment
+  - OpenAPI
+  - Pay-Per-Use
+  - Privacy
   - LLMs
   - Web Index
 url: https://raw.githubusercontent.com/api-evangelist/kagi/refs/heads/main/apis.yml
@@ -162,6 +174,12 @@ apis:
   - Documents
   - Audio
   - Video
+  - LLM
+  tags_raw:
+  - Summarization
+  - Documents
+  - Audio
+  - Video
   - LLMs
   properties:
   - type: Documentation
@@ -200,6 +218,12 @@ apis:
   humanURL: https://help.kagi.com/kagi/api/fastgpt.html
   baseURL: https://kagi.com/api/v0
   tags:
+  - FastGPT
+  - QA
+  - Grounded Answers
+  - LLM
+  - Search
+  tags_raw:
   - FastGPT
   - QA
   - Grounded Answers
