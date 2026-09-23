@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Kagi Extract Search API
+  title: Kagi Search API
   description: REST API for the Kagi premium search platform, exposing web search and markdown extract endpoints. All requests are authenticated with a Kagi API token issued from the Kagi API portal.
   version: 1.0.0
   termsOfService: https://kagi.com/terms
