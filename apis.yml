@@ -49,7 +49,7 @@ tags:
   - AI Search
   - Summarization
   - FastGPT
-  - Enrichment
+  - Data Enrichment
   - OpenAPI
   - Pay-Per-Use
   - Privacy
@@ -131,6 +131,12 @@ apis:
   humanURL: https://help.kagi.com/kagi/api/enrich.html
   baseURL: https://kagi.com/api/v0
   tags:
+  - Data Enrichment
+  - Teclis
+  - TinyGem
+  - News
+  - Web Index
+  tags_raw:
   - Enrichment
   - Teclis
   - TinyGem
