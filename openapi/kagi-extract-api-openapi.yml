@@ -1,56 +1,374 @@
 openapi: 3.2.0
 info:
-  title: Kagi Search Extract API
-  description: REST API for the Kagi premium search platform, exposing web search and markdown extract endpoints. All requests are authenticated with a Kagi API token issued from the Kagi API portal.
-  version: 1.0.0
-  termsOfService: https://kagi.com/terms
-  contact:
-    name: Kagi Support
-    url: https://help.kagi.com/kagi/api/overview.html
+  title: Kagi Extract API
+  version: '1'
+  description: 'The Kagi API provides programmatic access to data that powers our search results & more.
+
+
+    Get started on the API Dashboard to set up billing, manage API keys, and more.
+
+
+    See our API Pricing page for standard rates.
+
+
+    ### Official Client Libraries
+
+
+    We offer the following libraries you can use to interact with the Kagi API. These are generated from an OpenAPI spec.
+
+
+    - Golang
+
+    - Python
+
+    - TypeScript
+
+    - Rust
+
+
+    If you have a language you would like to use and it''s not in the list, send us a message and we will add it to the list if it is supported. Or you can use the spec to build your own custom library.
+
+
+    In the future we will most likely offer more crafted API wrappers and spotlight clients and applications built by our community - feel free to send them to us!
+
+
+    ### API Terms of Service
+
+
+    Use of the Kagi API is governed by our API Terms of Service.
+
+
+    ### MCP
+
+
+    We offer a hosted MCP server at: https://mcp.kagi.com/mcp
+
+
+    At this time, we do not support setup via OAuth2 flow, but this is on our roadmap. You will need to get your API key from the dashboard and plug it into your local client with `Bearer` HTTP authentication.
+
+
+    Here is an example to get started with Claude Code:
+
+
+    ```
+
+    claude mcp add kagi https://mcp.kagi.com/mcp --transport http --header "Authorization: Bearer $(read -sp ''API key: '' k; echo $k)" --scope user
+
+    ```
+
+
+    You can review and contribute to our MCP server on GitHub!
+
+
+    ### Support
+
+
+    For bug reports, feature requests, or billing related issues please reach out to developers@kagi.com and we will be happy to assist you.
+
+
+    To help us answer your reports efficiently, please be prepared to provide as much info as you can:
+
+
+    - For bugs, include request trace IDs from the `meta.trace` response field or the `X-Kagi-Trace` response header.
+
+    - If issues are easily reproduced in our playground, send us a link to the playground - the URL will contain parameters to configure the request so that we can reproduce ourselves.
+
+    - Include any code snippets or precise descriptions of the request you are making, and full samples of the response bodies from the API
+
+    - Include mention of which wrapper you are using if any, or links to relevant application code we can review
+
+    - Include the email address associated with your Kagi login if it is not the one you are emailing from
+
+
+    Thank you!
+
+
+    ### Discord
+
+
+    Join our Discord! Good for quick questions or chatting about things you''ve made with our APIs!
+
+
+    In the server you will find the `#api` forum for API related inquiries.'
   license:
-    name: Proprietary
-    url: https://kagi.com/terms
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  contact:
+    name: API Support
+    email: developers@kagi.com
 servers:
 - url: https://kagi.com/api/v1
-  description: Kagi API production endpoint
-security:
-- bearerAuth: []
+  description: Production api endpoint
 tags:
 - name: Extract
-  description: Extract markdown content from web URLs.
+  x-displayName: Extract API
+  description: 'Extract contents from web pages, currently in markdown form. This endpoint accepts a list of URLs
+
+    and returns the extracted markdown content for each page.'
 paths:
   /extract:
     post:
-      operationId: extract
-      summary: Extract markdown from URLs
-      description: Extract clean markdown content from up to 10 URLs per request using the Kagi extraction service.
+      security:
+      - kagi: []
       tags:
       - Extract
+      summary: Extract page content as markdown from URLs
+      description: 'Extracts markdown content from up to 10 HTTP(s) URLs. Each URL is processed
+
+        and the extracted content is returned in the response.'
+      operationId: extractContent
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                urls:
-                  type: array
-                  description: One or more URLs to extract markdown from (up to 10 per call).
-                  items:
-                    type: string
-                    format: uri
-              required:
-              - urls
+              $ref: '#/components/schemas/extractRequest'
+            examples:
+              basicExtract:
+                summary: Extract from multiple URLs
+                description: Request to extract content from up to 10 web pages
+                value:
+                  pages:
+                  - url: https://example.com/article1
+                  - url: https://example.com/article2
+                  timeout: 1.337
+                  format: json
       responses:
         '200':
-          description: Extracted markdown payload.
+          description: Successful extraction
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/extractResponse'
+              examples:
+                default:
+                  summary: Successful extraction response
+                  value:
+                    meta:
+                      trace: abc123def456
+                      ms: 1250
+                      node: us-east-1
+                    data:
+                    - url: https://example.com/article
+                      markdown: '# Article Title
+
+
+                        This is the extracted content...'
+            text/markdown:
+              schema:
+                type: string
+                description: Plain markdown extracted content without JSON wrapper
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorEnvelope'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          description: Forbidden - IP address not authorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorEnvelope'
+        '429':
+          description: Rate limited or usage limit exhausted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorEnvelope'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorEnvelope'
 components:
+  schemas:
+    pageInput:
+      type: object
+      description: A single page to extract content from
+      required:
+      - url
+      properties:
+        url:
+          type: string
+          format: uri
+          description: 'The HTTPS URL of the page to extract content from.
+
+            Must use HTTPS scheme with a valid host.
+
+            '
+          example: https://example.com/article
+    errorEnvelope:
+      type: object
+      description: API error response envelope containing metadata and an array of error details
+      required:
+      - meta
+      - error
+      properties:
+        meta:
+          $ref: '#/components/schemas/meta'
+        data:
+          type:
+          - array
+          - 'null'
+          description: Empty data array when error occurs
+          items: {}
+        error:
+          type: array
+          description: Array of error detail objects describing what went wrong
+          items:
+            $ref: '#/components/schemas/errorDetail'
+    meta:
+      description: This object is subject to change as it is provided for debugging purposes. Fields may be added or removed as required. Don't build any hard dependancies on any of this data.
+      type: object
+      properties:
+        trace:
+          type: string
+          description: Trace ID that can be used to debug individual API requests. Provide this, if needed, when contacting Kagi support.
+        node:
+          type: string
+          description: The hostname of the node that fulfilled the request.
+        ms:
+          type: integer
+          description: how long the request took to fulfill, excluding round trip to the client.
+      additionalProperties: true
+    pageOutput:
+      type: object
+      description: Extracted content for a single page
+      required:
+      - url
+      properties:
+        url:
+          type: string
+          format: uri
+          description: The URL of the extracted page
+          example: https://example.com/article
+        markdown:
+          type:
+          - string
+          - 'null'
+          description: Extracted markdown content of the page. Will be absent if extraction fails.
+          example: '# Article Title
+
+
+            This is the extracted content...'
+        error:
+          type: string
+          description: If extraction fails, a string describing the reason why.
+    extractResponse:
+      type: object
+      description: Response containing extracted content
+      required:
+      - meta
+      - data
+      properties:
+        meta:
+          $ref: '#/components/schemas/meta'
+        data:
+          type: array
+          description: Array of extracted page content
+          items:
+            $ref: '#/components/schemas/pageOutput'
+        errors:
+          type: array
+          description: Optional array of errors that occurred during extraction
+          items:
+            $ref: '#/components/schemas/errorDetail'
+    errorDetail:
+      type: object
+      description: API error response for Extract operations
+      required:
+      - code
+      - url
+      properties:
+        code:
+          type: string
+          description: Namespaced error code
+          example: extract.invalid_url
+        url:
+          type: string
+          format: uri
+          description: 'URL to error documentation.
+
+
+            **NOTE:** These URLs are still a work in progress and will currently return a 404 error. These will be updated to real URLs as the preview period continues.
+
+            '
+          example: https://help.kagi.com/api/errors#extract.invalid_url
+        message:
+          type:
+          - string
+          - 'null'
+          description: Human-readable error message
+          example: URL must be a valid HTTPS URL
+        location:
+          type:
+          - string
+          - 'null'
+          description: Field location where the error occurred
+          example: pages[0].url
+    extractRequest:
+      type: object
+      description: Request body for content extraction
+      required:
+      - pages
+      properties:
+        pages:
+          type: array
+          description: 'Array of pages to extract content from. Must contain 1-10 URLs.
+
+            Each URL must be a valid HTTPS URL.
+
+            '
+          minItems: 1
+          maxItems: 10
+          items:
+            $ref: '#/components/schemas/pageInput'
+        timeout:
+          type: number
+          format: float
+          minimum: 0.5
+          maximum: 10
+          description: 'Optional timeout in seconds for the extraction operation. Out of range values will be clamped back within range.
+
+
+            All URLs are fetched concurrently. This timeout applies a time budget for the entire bulk fetch operation.
+
+            '
+          example: 1.337
+        format:
+          type: string
+          description: '**(EXPERIMENTAL)** Format to serialize the API response as. The exact contents and structure of markdown output is still being worked on - please send your feedback!'
+          enum:
+          - json
+          - markdown
+          default: json
+  responses:
+    unauthorized:
+      description: Access token is missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorEnvelope'
+          examples:
+            default:
+              summary: Response with unauthorized error
+              value:
+                meta:
+                  trace: 69c3f5c4168f66b860e951c585550f1c
+                  node: us-central1
+                  ms: 213
+                data: null
+                error:
+                - code: '2'
+                  url: https://help.kagi.com/api/errors#unauthorized
+                  message: Unauthorized
+                  location: null
   securitySchemes:
-    bearerAuth:
+    kagi:
       type: http
       scheme: bearer
-      description: Kagi API token issued from https://kagi.com/api/keys, sent in the Authorization header as "Bearer <token>" (or the equivalent "Bot <token>" form documented for the legacy Search endpoint).
+      description: Kagi API key from https://kagi.com/api/keys
