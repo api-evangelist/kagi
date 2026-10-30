@@ -1,4 +1,4 @@
-# Kagi (kagi)
+# Kagi
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,143 +66,127 @@
 
 Kagi is a privacy-focused premium search engine that also operates a commercial APIs portfolio for developers. The Kagi APIs Portal exposes Search, Enrichment, Universal Summarizer, and FastGPT endpoints, plus a free Small Web RSS feed for non-commercial use. The portal includes an API Playground, usage dashboard, and API key management with IP allowlists and per-product scopes. Kagi publishes an OpenAPI specification and ships official client libraries in Python, Go, Rust, and TypeScript. Billing is pay-per-use with monthly invoicing and a Discord community for developer support.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/kagi/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/kagi/refs/heads/main/apis.yml)
+**Areas:** Search · Premium Search · AI Search · Summarization · FastGPT · Data Enrichment · OpenAPI · Pay-Per-Use · Privacy · LLM · Web Index
 
-## Scope
+## Kagi on APIs.io
 
-- **Type:** Index
-- **Position:** Provider
-- **Access:** 3rd-Party
+Everything profiled for Kagi is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/kagi/](https://apis.io/providers/kagi/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (6)
 
-- Search
-- Premium Search
-- AI Search
-- Summarization
-- FastGPT
-- Enrichment
-- OpenAPI
-- Pay-Per-Use
-- Privacy
-- LLMs
-- Web Index
+- [Kagi Search API](https://apis.io/apis/kagi/search-api/) — The Kagi Search API delivers premium, ad-free web search results powered by the Kagi index, designed for AI agents, research workflows, and applications…
+- [Kagi Enrichment API](https://apis.io/apis/kagi/enrichment-api/) — The Kagi Enrichment API provides access to Kagi's Teclis non-commercial web index and TinyGem news index for specialized retrieval and discovery workloads.
+- [Kagi Universal Summarizer API](https://apis.io/apis/kagi/summarizer-api/) — The Universal Summarizer API condenses URLs, documents, audio, and video into structured summaries using Kagi's hosted models.
+- [Kagi FastGPT API](https://apis.io/apis/kagi/fastgpt-api/) — FastGPT is Kagi's LLM-powered question answering API that combines a hosted model with live Kagi web search for grounded, cited answers.
+- [Kagi Extract API](https://apis.io/apis/kagi/kagi-extract-api/) — Extract markdown content from web URLs.
+- [Kagi Search API](https://apis.io/apis/kagi/kagi-search-api/) — Perform Kagi web searches.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-23
-- **Modified:** 2026-05-23
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Kagi Search API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Kagi Search API delivers premium, ad-free web search results powered by the Kagi index, designed for AI agents, research workflows, and applications that demand high-quality results.
+- [Kagi Agentic Access](https://apis.io/agentic-access/kagi/kagi-agentic-access/)
 
-- **Human URL:** [https://help.kagi.com/kagi/api/search.html](https://help.kagi.com/kagi/api/search.html)
-- **Base URL:** `https://kagi.com/api/v0`
+#### Collections (3)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Search
-- Web
-- REST
+- [Kagi Search API](https://apis.io/collections/kagi/open-kagi/)
+- [Kagi Search Extract API](https://apis.io/collections/kagi/open-kagi-extract-api/)
+- [Kagi Extract Search API](https://apis.io/collections/kagi/open-kagi-search-api/)
 
-#### Properties
+#### Security (3)
 
-- [Documentation](https://help.kagi.com/kagi/api/search.html)
-- [Getting Started](https://help.kagi.com/kagi/api/intro.html)
-- [Sign Up](https://kagi.com/signup)
-- [API Reference](https://help.kagi.com/kagi/api/search.html)
-- [SDK](https://github.com/kagisearch)
-- [Pricing](https://help.kagi.com/kagi/api/overview.html)
-- [Authentication](https://help.kagi.com/kagi/api/intro.html)
-- [Postman Collection](collections/kagi.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/kagi.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-### Kagi Enrichment API
+- [Kagi Authentication](https://apis.io/security/kagi/kagi-authentication/)
+- [Kagi Domain Security](https://apis.io/security/kagi/kagi-domain-security/)
+- [Kagi Vulnerability Disclosure](https://apis.io/security/kagi/kagi-vulnerability-disclosure/)
 
-The Kagi Enrichment API provides access to Kagi's Teclis non-commercial web index and TinyGem news index for specialized retrieval and discovery workloads.
+#### Plans and pricing (1)
 
-- **Human URL:** [https://help.kagi.com/kagi/api/enrich.html](https://help.kagi.com/kagi/api/enrich.html)
-- **Base URL:** `https://kagi.com/api/v0`
+Published plans, tiers and prices.
 
-#### Tags
+- [Kagi Plans Pricing](https://apis.io/plans/kagi/kagi-plans-pricing/)
 
-- Enrichment
-- Teclis
-- TinyGem
-- News
-- Web Index
+#### Rate limits (1)
 
-#### Properties
+Published request limits.
 
-- [Documentation](https://help.kagi.com/kagi/api/enrich.html)
-- [API Reference](https://help.kagi.com/kagi/api/enrich.html)
-- [Pricing](https://help.kagi.com/kagi/api/overview.html)
-- [Postman Collection](collections/kagi.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/kagi.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Kagi Rate Limits](https://apis.io/rate-limits/kagi/kagi-rate-limits/)
 
-### Kagi Universal Summarizer API
+#### FinOps (1)
 
-The Universal Summarizer API condenses URLs, documents, audio, and video into structured summaries using Kagi's hosted models.
+What the API costs to run, by operation.
 
-- **Human URL:** [https://help.kagi.com/kagi/api/summarizer.html](https://help.kagi.com/kagi/api/summarizer.html)
-- **Base URL:** `https://kagi.com/api/v0`
+- [Kagi Finops](https://apis.io/finops/kagi/kagi-finops/)
 
-#### Tags
+## Where to find this API
 
-- Summarization
-- Documents
-- Audio
-- Video
-- LLMs
-
-#### Properties
-
-- [Documentation](https://help.kagi.com/kagi/api/summarizer.html)
-- [API Reference](https://help.kagi.com/kagi/api/summarizer.html)
-- [Pricing](https://help.kagi.com/kagi/api/overview.html)
-- [Postman Collection](collections/kagi.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/kagi.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Kagi FastGPT API
-
-FastGPT is Kagi's LLM-powered question answering API that combines a hosted model with live Kagi web search for grounded, cited answers.
-
-- **Human URL:** [https://help.kagi.com/kagi/api/fastgpt.html](https://help.kagi.com/kagi/api/fastgpt.html)
-- **Base URL:** `https://kagi.com/api/v0`
-
-#### Tags
-
-- FastGPT
-- QA
-- Grounded Answers
-- LLMs
-- Search
-
-#### Properties
-
-- [Documentation](https://help.kagi.com/kagi/api/fastgpt.html)
-- [API Reference](https://help.kagi.com/kagi/api/fastgpt.html)
-- [Pricing](https://help.kagi.com/kagi/api/overview.html)
-- [Postman Collection](collections/kagi.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/kagi.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://kagi.com)
 - [Documentation](https://help.kagi.com/kagi/api/overview.html)
-- [Blog](https://blog.kagi.com)
-- [GitHub Organization](https://github.com/kagisearch)
 - [Pricing](https://help.kagi.com/kagi/api/overview.html)
-- [Terms of Service](https://kagi.com/terms)
-- [Privacy Policy](https://kagi.com/privacy)
-- [Discord](https://kagi.com/discord)
-- [X (Twitter)](https://x.com/kagihq)
 - [Changelog](https://kagi.com/changelog)
+- [Blog](https://blog.kagi.com)
+- [Terms of service](https://kagi.com/terms)
+- [Privacy policy](https://kagi.com/privacy)
+- [GitHub](https://github.com/kagisearch)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 36.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 49.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 31.0 |
+| Access clarity | 39.5 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 20.0** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/kagi/](https://apis.io/providers/kagi/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Kagi: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/kagi/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
